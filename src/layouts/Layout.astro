@@ -1,4 +1,6 @@
 ---
+import Header from '../components/Header.astro';
+
 interface Props {
 	title: string;
 }
@@ -16,8 +18,11 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-white min-h-screen pb-32">
+		<Header />
+		<main class="max-w-5xl px-4 m-auto">
+			<slot />
+		</main>
 	</body>
 </html>
 <style is:global>
@@ -34,8 +39,9 @@ const { title } = Astro.props;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
+		background: #383838;
 		background-size: 224px;
+		color-scheme: dark light;
 	}
 	code {
 		font-family:
@@ -48,4 +54,9 @@ const { title } = Astro.props;
 			Courier New,
 			monospace;
 	}
+	.cards {
+  display: flex;
+  flex-direction: row; /* Organizar las tarjetas en columnas */
+  gap: 16px; /* Espacio entre las tarjetas */
+}
 </style>
