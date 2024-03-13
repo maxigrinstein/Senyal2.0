@@ -2,17 +2,27 @@
 import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
 import 	Card from '../components/Card.astro'
+import { Image } from 'astro:assets';
+import ProductsService from '../services/products.service.ts'
+
+const products = await ProductsService.getProducts()
+
 ---
 
 
 	<Layout title="SpaceX Launches">
-		<Card>
-			<h2 slot="title">Camisa de algodón</h2>
-			<p slot="description">Camisa de manga larga con botones, disponible en varios colores y tallas.</p>
-		  </Card>
-		  
-		  <Card>
-			<h2 slot="title">Pantalones vaqueros</h2>
-			<p slot="description">Pantalones vaqueros ajustados con estilo desgastado, perfectos para un look casual.</p>
-		  </Card>
+		<div class="grid-products">
+			{
+				products.map ((product) => <Card {...product}/>)
+			}
+		</div>
 	</Layout>
+
+<style>
+	.grid-products {
+		padding-block: 20px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) ;
+		gap: 10px;
+	}
+</style>
