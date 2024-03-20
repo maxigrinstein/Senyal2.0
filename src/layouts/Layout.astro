@@ -1,7 +1,7 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '@fontsource/lato';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource/bebas-neue";
 interface Props {
 	title: string;
 }
@@ -15,22 +15,22 @@ const { title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/022166265a6613d8d49c75b3da067a94.png" />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/022166265a6613d8d49c75b3da067a94.png"
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body>
 		<Header />
-		<main class="container px-4 m-auto">
-			<slot />
-		</main>
-	
+		<slot />
 	</body>
-	<Footer/>
+	<Footer />
 </html>
 
 <style is:global>
-	
 	:root {
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
@@ -39,29 +39,13 @@ const { title } = Astro.props;
 			45deg,
 			rgb(var(--accent)),
 			rgb(var(--accent-light)) 30%,
-			white 60%
+			/* white 60% */
 		);
 	}
 	html {
-		font-family: roboto-condensed, sans-serif;
-		background: #adadad;
+		font-family: Bebas Neue, sans-serif;
+		/* background: #adadad;
 		background-size: 224px;
-		color-scheme: dark light;
+		color-scheme: dark light; */
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace
-	}
-	.cards {
-  display: flex;
-  flex-direction: row; /* Organizar las tarjetas en columnas */
-  gap: 16px; /* Espacio entre las tarjetas */
-}
 </style>

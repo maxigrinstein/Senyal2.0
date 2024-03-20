@@ -1,30 +1,18 @@
 ---
-import Header from '../components/Header.astro';
-import Layout from '../layouts/Layout.astro';
-import 	Card from '../components/Card.astro'
-import { Image } from 'astro:assets';
-import ProductsService from '../services/products.service.ts'
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { Image } from "astro:assets";
+import ProductsService from "../services/products.service.ts";
 
-const products = await ProductsService.getProducts()
-
+const products = await ProductsService.getProducts();
+const slicedProducts = products.slice(0, 8);
 ---
 
-
-	<Layout title="Senyal">
-		
-		<div></div>
-		<div class="grid-products">
-			{
-				products.map ((product) => <Card {...product}/>)
-			}
-		</div>
-	</Layout>
-
-<style>
-	.grid-products {
-		padding-block: 20px;
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) ;
-		gap: 10px;
-	}
-</style>
+<Layout title="Senyal">
+	<div
+		class="grid grid-cols-1 bg-neutral-100 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 p-10"
+	>
+		{slicedProducts.map((product) => <Card {...product} />)}
+	</div>
+</Layout>
