@@ -13,21 +13,42 @@ const props = Astro.props;
 
 
 
-<div class=" bg-white border border-gray-200 rounded-lg shadow dark:bg-zinc-600 dark:border-black  rounded-b-xl ">
-  <a href="#">
+<div class="hover-container bg-white border border-gray-200 rounded-lg shadow dark:bg-zinc-600 dark:border-zinc-700 rounded-b-xl">
+    <a href={`/products/${props.id}`}>
       <img class="rounded-t-xl rounded-b-xl" src={props.image} alt="" />
-  </a>
-  <div class="p-5">
+    </a>
+    <div class="p-5">
       <a href="#">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{props.title}</h5>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{props.title}</h5>
       </a>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{props.description}</p>
+  
       <a href={`/products/${props.id}`} class="inline-flex items-center text-white bg-zinc-800 hover:bg-zinc-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-zinc-800 dark:hover:bg-zinc-900 dark:focus:ring-zinc-700 dark:border-zinc-700">
-          Ir al producto
-           <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-          </svg>
+        Ir al producto
+        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+        </svg>
       </a>
+    </div>
   </div>
-</div>
-
+  
+  <style>
+    .hover-container {
+      transition-duration: 200ms;
+      box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.25);
+    }
+  
+    .hover-container:hover {
+      cursor: pointer;
+      background-color: rgb(69, 69, 71);
+      scale: 1.02;
+    }
+  
+    .hover-container .p-5 {
+      transition: transform 200ms;
+    }
+  
+    .hover-container:hover .p-5 {
+      transform: scale(1.05);
+    }
+  </style>
+  
