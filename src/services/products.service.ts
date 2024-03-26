@@ -8,6 +8,7 @@ const products = [
 		description: "¡Deslumbra con estilo y elegancia con nuestro exquisito Chaleco Rosa! Este chaleco es una verdadera declaración de moda, diseñado para aquellos que desean destacar con un toque de color y sofisticación. Fabricado con los más altos estándares de calidad, nuestro chaleco rosa está confeccionado con un tejido suave y delicado que ofrece comodidad y calidez durante todo el día. Su tono rosa vibrante añade un toque de frescura y vitalidad a cualquier atuendo, mientras que su corte moderno y ajuste impecable garantizan una apariencia elegante y estilizada en cualquier ocasión.  Ya sea que desees elevar tu look casual diario o impresionar en un evento formal, nuestro chaleco rosa es la elección perfecta. Combínalo con una camisa blanca para un estilo clásico y atemporal, o atrévete a experimentar combinándolo con tonos neutros para un contraste chic y contemporáneo. Haz una declaración de moda audaz y añade un toque de color a tu guardarropa con nuestro Chaleco Rosa. ¡Prepárate para brillar con confianza y estilo dondequiera que vayas!",
 		image: "/378542495_17995575353499155_6681925949692402668_n.jpg",
 		stock: true,
+	
 	},
 	{
 		id: uuidv4(),
