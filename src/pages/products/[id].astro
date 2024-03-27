@@ -1,51 +1,62 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import ProductsService from "@/services/products.service";
 const params = Astro.params as { id: string };
 const product = await ProductsService.getProduct(params.id);
 if (!product) return Astro.redirect("/404");
-import { Icon } from "astro-icon/components";
 ---
 
 <Layout title={product.title}>
     <div class="bg-neutral-100 flex flex-col">
-        
-        <div class="flex flex-row">
-            <img
-                src={product.image}
-                alt={product.title}
-                class="w-[37%] h-auto"
-            />
+        <div class="flex flex-row pl-10">
+            <div class="w-[20%]">
+                <img src={product.image} alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(0)" />
+                <img src="/379361470_17996266598499155_2013131359526437872_n.jpg" alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(1)" />
+                <img src={product.image} alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(2)" />
+                <img src={product.image} alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(3)" />
+            </div>
+            <div class="w-1/2 relative" id="carouselContainer">
+                <img src={product.image} alt={product.title} class="w-full h-[90vh]" id="carouselImage" />
+               
+            </div>
             <div class="px-10 flex flex-col justify-between">
                 <div>
-                    <h1 class="text-xl text-neutral-800 underline pb-10">
-                        <a href="">
-                            PREV
-                        </a>
-                        <a href="" class="float-right">
-                            NEXT
-                        </a>
+                    <h1 class="text-xl text-neutral-800 underline -10">
+                        <a href="">PREV</a>
+                        <a href="" class="float-right">NEXT</a>
                     </h1>
-                    <h1 class="text-2xl text-neutral-950">
-                        {product.title}
-                    </h1>
+                    <h1 class="text-2xl text-neutral-950">{product.title}</h1>
                     <p class="text-lg mt-10 text-black">
-                         Un toque de frescura y elegancia para cualquier ocasión. Su suave textura y tonalidad vibrante añaden un toque de estilo primaveral a tu atuendo.
+                        Un toque de frescura y elegancia para cualquier ocasión. Su suave textura y tonalidad vibrante añaden un toque de estilo primaveral a tu atuendo.
                     </p>
                     <p class="text-lg mt-10 text-black">
                         Materiales: 100% algodón,  100% poliéster, 100% microfibra
                     </p>
-                    <p  class="font-bold text-lg mt-10 text-black">
-                        Color: Rosa
-                    </p>
+                    <p class="font-bold text-lg mt-10 text-black">Color: Rosa</p>
                 </div>
-
-                <!-- <button
-                    class="bg-neutral-500 w-full hover:bg-neutral-600 transition-all duration-300 text-white py-2 rounded-md text-lg mt-5"
-                    >Volver a inicio</button
-                > -->
+             
             </div>
         </div>
     </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = [`${product.image}`, `${product.image1}`, `${product.image2}`, `${product.image3}`, `${product.image4}`];
+        const carouselImage = document.getElementById('carouselImage');
+
+        function showImage(index) {
+            currentImageIndex = index;
+            carouselImage.src = images[index];
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+            carouselImage.src = images[currentImageIndex];
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            carouselImage.src = images[currentImageIndex];
+        }
+    </script>
 </Layout>
