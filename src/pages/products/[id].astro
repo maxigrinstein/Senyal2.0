@@ -1,5 +1,4 @@
 ---
-
 import Layout from "@/layouts/Layout.astro";
 import ProductsService from "@/services/products.service";
 const params = Astro.params as { id: string };
@@ -8,46 +7,64 @@ if (!product) return Astro.redirect("/404");
 ---
 
 <Layout title={product.title}>
-    <div class="flex flex-col">
-        <div class="flex flex-row  bg-neutral-100 ">
-            <div class="px-10 ">
-                {product.images?.map((image, index) => <img src={image} alt={product.title} class="w-[15vh] h-auto  cursor-pointer secondary_image mb-3"  />)}
-            </div>
-            <div class=" relative" id="carouselContainer">
-                <img src={product.image} alt={product.title} class="w-auto h-[81.73vh] " id="carouselImage" />
-            </div>
-            <div class="px-10 flex flex-col justify-between">
-                <div>
-                    
-                    <h1 class="text-2xl text-neutral-950">{product.title}</h1>
-                    <p class="text-lg mt-10 text-black">
-                        Un toque de frescura y elegancia para cualquier ocasión. Su suave textura y tonalidad vibrante añaden un toque de estilo primaveral a tu atuendo.
-                    </p>
-                    <p class="text-lg mt-10 text-black">
-                        Materiales: 100% algodón,  100% poliéster, 100% microfibra
-                    </p>
-                    <p class="font-bold text-lg mt-10 text-black">Color: Rosa</p>
-                </div>
-             
-            </div>
+  <div class="flex flex-col">
+    <div class="flex flex-row bg-neutral-100">
+      <div class="px-10">
+        {
+          product.images?.map((image, index) => (
+            <img
+              src={image}
+              alt={product.title}
+              class="w-[15vh] h-auto  cursor-pointer secondary_image mb-3"
+            />
+          ))
+        }
+      </div>
+      <div class="relative" id="carouselContainer">
+        <img
+          src={product.image}
+          alt={product.title}
+          class="w-auto h-[81.73vh]"
+          id="carouselImage"
+         
+        />
+      </div>
+      <div class="px-10 flex flex-col justify-between">
+        <div>
+          <h1 class="text-2xl text-neutral-950">{product.title}</h1>
+          <p class="text-lg mt-10 text-black">
+            Un toque de frescura y elegancia para cualquier ocasión. Su suave
+            textura y tonalidad vibrante añaden un toque de estilo primaveral a
+            tu atuendo.
+          </p>
+          <p class="text-lg mt-10 text-black">
+            Materiales: 100% algodón, 100% poliéster, 100% microfibra
+          </p>
+          <p class="font-bold text-lg mt-10 text-black">Color: Rosa</p>
         </div>
+      </div>
     </div>
+  </div>
 
-    <style>
-            img.secondary_image:hover{
-                transform: scale(1.05);
-                transition-duration: 200ms;
-        }   
-    </style>
+  <style>
+    img.secondary_image:hover {
+      transform: scale(1.05);
+      transition-duration: 200ms;
+    }
+  </style>
 
-    <script>
-        const $secondaryImages = document.querySelectorAll("img.secondary_image") as NodeListOf<HTMLImageElement>;
-        console.log($secondaryImages)
-        $secondaryImages.forEach((image, index) => {
-            image.addEventListener("mouseover", () => {
-                (document.getElementById("carouselImage") as HTMLImageElement).src = image.src;
-            })
-        })
-        
-    </script>
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const $secondaryImages = document.querySelectorAll(
+        "img.secondary_image"
+      ) as NodeListOf<HTMLImageElement>;
+      console.log($secondaryImages);
+      $secondaryImages.forEach((image, index) => {
+        image.addEventListener("mouseover", () => {
+          (document.getElementById("carouselImage") as HTMLImageElement).src =
+            image.src;
+        });
+      });
+    });
+  </script>
 </Layout>
