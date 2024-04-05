@@ -1,4 +1,5 @@
 ---
+
 import Layout from "@/layouts/Layout.astro";
 import ProductsService from "@/services/products.service";
 const params = Astro.params as { id: string };
@@ -7,24 +8,17 @@ if (!product) return Astro.redirect("/404");
 ---
 
 <Layout title={product.title}>
-    <div class="bg-neutral-100 flex flex-col">
-        <div class="flex flex-row pl-10">
-            <div class="w-[20%]">
-                <img src={product.image} alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(0)" />
-                <img src="/379361470_17996266598499155_2013131359526437872_n.jpg" alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(1)" />
-                <img src={product.image} alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(2)" />
-                <img src={product.image} alt={product.title} class="w-[20vh] h-[25vh] my-2 cursor-pointer" onclick="showImage(3)" />
+    <div class="flex flex-col">
+        <div class="flex flex-row  bg-neutral-100 ">
+            <div class="px-10 ">
+                {product.images?.map((image, index) => <img src={image} alt={product.title} class="w-[15vh] h-auto  cursor-pointer secondary_image mb-3"  />)}
             </div>
-            <div class="w-1/2 relative" id="carouselContainer">
-                <img src={product.image} alt={product.title} class="w-full h-[90vh]" id="carouselImage" />
-               
+            <div class=" relative" id="carouselContainer">
+                <img src={product.image} alt={product.title} class="w-auto h-[81.73vh] " id="carouselImage" />
             </div>
             <div class="px-10 flex flex-col justify-between">
                 <div>
-                    <h1 class="text-xl text-neutral-800 underline mb-5">
-                        <a href="">PREV</a>
-                        <a href="" class="float-right">NEXT</a>
-                    </h1>
+                    
                     <h1 class="text-2xl text-neutral-950">{product.title}</h1>
                     <p class="text-lg mt-10 text-black">
                         Un toque de frescura y elegancia para cualquier ocasión. Su suave textura y tonalidad vibrante añaden un toque de estilo primaveral a tu atuendo.
@@ -39,24 +33,21 @@ if (!product) return Astro.redirect("/404");
         </div>
     </div>
 
+    <style>
+            img.secondary_image:hover{
+                transform: scale(1.05);
+                transition-duration: 200ms;
+        }   
+    </style>
+
     <script>
-        let currentImageIndex = 0;
-        const images = [`${product.image}`, `${product.image1}`, `${product.image2}`, `${product.image3}`, `${product.image4}`];
-        const carouselImage = document.getElementById('carouselImage');
-
-        function showImage(index) {
-            currentImageIndex = index;
-            carouselImage.src = images[index];
-        }
-
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-            carouselImage.src = images[currentImageIndex];
-        }
-
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            carouselImage.src = images[currentImageIndex];
-        }
+        const $secondaryImages = document.querySelectorAll("img.secondary_image") as NodeListOf<HTMLImageElement>;
+        console.log($secondaryImages)
+        $secondaryImages.forEach((image, index) => {
+            image.addEventListener("mouseover", () => {
+                (document.getElementById("carouselImage") as HTMLImageElement).src = image.src;
+            })
+        })
+        
     </script>
 </Layout>
