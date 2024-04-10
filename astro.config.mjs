@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import node from "@astrojs/node";
+
 import vercel from "@astrojs/vercel/serverless";
 
 import icon from "astro-icon";
@@ -11,7 +11,9 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [tailwind(), icon()],
   output: "server",
-  adapter: node({
-    mode: "standalone",
-  }),
+  compilerOptions: {
+    "plugins": [{
+      "name": "@astrojs/ts-plugin"
+    }]
+  },
 });
