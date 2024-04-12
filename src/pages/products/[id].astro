@@ -4,6 +4,7 @@ import ProductsService from "@/services/products.service";
 const params = Astro.params as { id: string };
 const product = await ProductsService.getProduct(params.id);
 if (!product) return Astro.redirect("/404");
+
 ---
 
 <Layout title={product.title}>
