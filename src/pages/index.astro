@@ -4,17 +4,36 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import { Image } from "astro:assets";
 import ProductsService from "../services/products.service.ts";
+import CardCategories from "../components/CardCategories.astro";
 
 const products = await ProductsService.getProducts();
-const slicedProducts = products.slice(0, 8);
+const slicedProducts = products.slice(0, 4);
+const productsChalecos = await ProductsService.getProductsByCategory('Chalecos');
+const productsCamisas = await ProductsService.getProductsByCategory('Camisas');
+const productsCamperas= await ProductsService.getProductsByCategory('Camperas');
 ---
 
 <Layout title="Senyal">
 	<img src="/fulladidasterraceDP.jpg" alt="" class="w-full h-auto">
 	<img src="/horchico-envios1004.jpg" alt="" class="py-10">
-	<div
-		class="grid grid-cols-1 bg-neutral-100 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 p-10"
-	>
+	<div class="flex ">
+        <div class="flex">
+            <div class="grid grid-cols-1 bg-neutral-100 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-x-2 gap-y-10 p-10">
+                {productsChalecos.map(product => <CardCategories {...product} />)}
+            </div>
+        </div>
+		<div class="flex">
+            <div class="grid grid-cols-1 bg-neutral-100 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-x-2 gap-y-10 p-10">
+                {productsCamperas.map(product => <CardCategories {...product} />)}
+            </div>
+        </div>
+        <div class="flex">
+            <div class="grid grid-cols-1 bg-neutral-100 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 gap-x-2 gap-y-10 p-10">
+                {productsCamisas.map(product => <CardCategories {...product} />)}
+            </div>
+        </div>
+    </div>
+	<div class="grid grid-cols-1 bg-neutral-100 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-4 gap-y-10 p-10">
 		{slicedProducts.map((product) => <Card {...product} />)}
 	</div>
 </Layout>

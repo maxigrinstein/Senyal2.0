@@ -19,7 +19,7 @@ const products = [
 		description: "¡Agrega un toque de estilo clásico y atemporal a tu guardarropa con nuestra Campera de Jean! Diseñada para aquellos que buscan un equilibrio perfecto entre moda y funcionalidad, esta campera es un imprescindible para cualquier temporada. Fabricada con denim de alta calidad, nuestra campera de jean ofrece durabilidad y resistencia, asegurando que te acompañe en todas tus aventuras con estilo. Su diseño versátil y atemporal combina perfectamente con cualquier outfit, desde un look casual de fin de semana hasta un conjunto más elegante para una salida nocturna. Con detalles de costura contrastantes y bolsillos prácticos, esta campera no solo es elegante, sino también funcional. Su silueta clásica y su corte favorecedor aseguran un ajuste cómodo y favorecedor para todo tipo de cuerpo. Ya sea que desees agregar un toque de frescura a tus conjuntos diarios o necesites una capa adicional para esos días frescos de primavera y otoño, nuestra Campera de Jean es la elección perfecta. ¡Haz una declaración de moda audaz y añade un toque de estilo retro con nuestra Campera de Jean! Prepárate para destacar con confianza en cualquier ocasión.",
 		image: "/379361470_17996266598499155_2013131359526437872_n.jpg",
 		stock: false,
-		tag: "Chalecos",
+		tag: "Camperas",
 		images: ["/378542495_17995575353499155_6681925949692402668_n.jpg", "/379361470_17996266598499155_2013131359526437872_n.jpg", "/378542495_17995575353499155_6681925949692402668_n.jpg"],
 		genre: "M",
 	},
@@ -29,7 +29,7 @@ const products = [
 		description: "Camisa de manga larga con botones, disponible en varios colores y tallas",
 		image: "/378542495_17995575353499155_6681925949692402668_n.jpg",
 		stock: true,
-		tag: "Chalecos",
+		tag: "Camisas",
 		images: ["/378542495_17995575353499155_6681925949692402668_n.jpg", "/379361470_17996266598499155_2013131359526437872_n.jpg", "/378542495_17995575353499155_6681925949692402668_n.jpg"],
 		genre: "W",
 	},
@@ -39,7 +39,7 @@ const products = [
 		description: "Camisa de manga larga con botones, disponible en varios colores y tallas",
 		image: "/378542495_17995575353499155_6681925949692402668_n.jpg",
 		stock: true,
-		tag: "Chalecos",
+		tag: "Chomba",
 		images: ["/378542495_17995575353499155_6681925949692402668_n.jpg", "/379361470_17996266598499155_2013131359526437872_n.jpg", "/378542495_17995575353499155_6681925949692402668_n.jpg"],
 		genre: "M",
 	},
@@ -50,7 +50,7 @@ const products = [
 		description: "Camisa de manga larga con botones, disponible en varios colores y tallas",
 		image: "/378542495_17995575353499155_6681925949692402668_n.jpg",
 		stock: true,
-		tag: "Chalecos",
+		tag: "Remera",
 		images: ["/378542495_17995575353499155_6681925949692402668_n.jpg", "/379361470_17996266598499155_2013131359526437872_n.jpg", "/378542495_17995575353499155_6681925949692402668_n.jpg"],
 		genre: "W",
 	},
@@ -60,7 +60,7 @@ const products = [
 		description: "Camisa de manga larga con botones, disponible en varios colores y tallas",
 		image: "/378542495_17995575353499155_6681925949692402668_n.jpg",
 		stock: true,
-		tag: "Chalecos",
+		tag: "Pantalon",
 		images: ["/378542495_17995575353499155_6681925949692402668_n.jpg", "/379361470_17996266598499155_2013131359526437872_n.jpg", "/378542495_17995575353499155_6681925949692402668_n.jpg"],
 		genre: "M",
 	},
@@ -70,7 +70,7 @@ const products = [
 		description: "Camisa de manga larga con botones, disponible en varios colores y tallas",
 		image: "/378542495_17995575353499155_6681925949692402668_n.jpg",
 		stock: true,
-		tag: "Chalecos",
+		tag: "Bermuda",
 		images: ["/378542495_17995575353499155_6681925949692402668_n.jpg", "/379361470_17996266598499155_2013131359526437872_n.jpg", "/378542495_17995575353499155_6681925949692402668_n.jpg"],
 		genre: "W",
 	},
@@ -80,7 +80,7 @@ const products = [
 		description: "Camisa de manga larga con botones, disponible en varios colores y tallas",
 		image: "/378542495_17995575353499155_6681925949692402668_n.jpg",
 		stock: true,
-		tag: "Chalecos",
+		tag: "Jean",
 		images: ["/378542495_17995575353499155_6681925949692402668_n.jpg", "/379361470_17996266598499155_2013131359526437872_n.jpg", "/378542495_17995575353499155_6681925949692402668_n.jpg"],
 		genre: "M",
 		
@@ -91,9 +91,14 @@ class ProductsService {
     static async getProducts() {
         return products
     }
+	static async getProductsByCategory(category: string) {
+        return products.filter(product => product.tag === category);
+    }
     static async getProduct(id: string) {
 		        return products.find(product => product.id === id)
     }
+
 }
+
 
 export default ProductsService
