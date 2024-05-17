@@ -1,41 +1,69 @@
 ---
 import { Image } from "astro:assets";
 import HeaderButton from "../components/HeaderButton.astro";
+import ProductsService from "@/services/products.service";
+
+const categories = await ProductsService.getAllCategories()
 ---
 
 <nav class="sticky top-0 z-10 flex lg:justify-center bg-neutral-100 w-full">
-    <div class="flex justify-between items-center w-full mx-10">
-        <a href="/" class="flex items-center">
-            <Image
-                src="/022166265a6613d8d49c75b3da067a94.png"
-                alt="Senyal Logo"
-                width="150"
-                height="150"
-            />
-        </a>
+  <div class="flex justify-between items-center w-full mx-10 py-8">
+    <a href="/" class="flex items-center overflow-hidden">
+      <Image
+        src="/logo.jpg"
+        alt="Senyal Logo"
+        width="150"
+        height="150"
+        class = "mix-blend-multiply"
+      />
+    </a>
 
-        <ul class="flex space-x-4 text-gray-800 text-lg">
-            <li><a href="#" class="hover:text-neutral-500">Inicio</a></li>
-            <li><a href="#" class="hover:text-neutral-500">Productos</a></li>
-            <li><a href="#" class="hover:text-neutral-500">Nosotros</a></li>
-            <li><a href="#" class="hover:text-neutral-500">Contacto</a></li>
-        </ul>
-    </div>
+    <ul class="flex space-x-4 text-gray-800 text-lg">
+      <li class="group">
+        <a id="productsDropdown" href="#" class="hover:text-neutral-500"
+          >Categorias</a
+        >
+        <div
+          x-show=""
+          class="origin-top-right absolute  w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block"
+        >
+          <div
+            class="py-1"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="options-menu"
+          >
+          {
+            categories.map((category) => {
+              return <a
+              href={`/categories/${category.tag}`}
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-neutral-100 hover:text-gray-900"
+              role="menuitem">{category.tag}</a>
+            })
+          }
+          
+          </div>
+        </div>
+      </li>
+      <li><a href="/about" class="hover:text-neutral-500">Nosotros</a></li>
+      <li><a href="/about" class="hover:text-neutral-500">Contacto</a></li>
+    </ul>
+  </div>
 </nav>
 
 <style>
-    nav {
-        height: 10vh;
-    }
+   
 </style>
 
 <script>
-    addEventListener("scroll", () => {
-        const nav = document.querySelector("nav");
-        if (window.scrollY > 0 && nav) {
-            nav.classList.add("shadow-lg");
-        } else if (nav) {
-            nav.classList.remove("shadow-lg");
-        }
-    });
+ 
+
+  addEventListener("scroll", () => {
+    const nav = document.querySelector("nav");
+    if (window.scrollY > 0 && nav) {
+      nav.classList.add("shadow-lg");
+    } else if (nav) {
+      nav.classList.remove("shadow-lg");
+    }
+  });
 </script>

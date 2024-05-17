@@ -23,6 +23,7 @@
     "@fontsource/montserrat": "^5.0.17",
     "@fontsource/roboto-condensed": "^5.0.15",
     "astro": "^4.0.8",
+    "astro-breadcrumbs": "^2.3.0",
     "astro-icon": "^1.1.0",
     "clsx": "^2.1.0",
     "react": "^18.2.0",

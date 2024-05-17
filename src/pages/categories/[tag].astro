@@ -1,6 +1,15 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import Card from "@/components/Card.astro";
+import ProductsService from "@/services/products.service";
+
+const params = Astro.params as { tag: string };
+const products = await ProductsService.getProductsByCategory(params.tag);
 ---
 
+
 <Layout title="Senyal">
+    <div class="grid grid-cols-1 bg-neutral-100 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-x-2 gap-y-10 p-10">
+        {products.map(product => <Card {...product} />)}
+    </div>
 </Layout>   
